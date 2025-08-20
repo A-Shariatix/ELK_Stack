@@ -67,8 +67,8 @@ services:
     environment:
       - FLEET_SERVER_ENABLE=1
       - ELASTICSEARCH_HOST=https://elastic:9200
-#      - ELASTICSEARCH_USERNAME=kibana_system
-#      - ELASTICSEARCH_PASSWORD=pass123
+#      - ELASTICSEARCH_USERNAME=kibana_system # enabline username and password made the agent sending data 
+#      - ELASTICSEARCH_PASSWORD=pass123 # but i don't understand the relation between these guys and the service token (on line 76)
       - FLEET_SERVER_CERT=/usr/share/elastic-agent/fleet/fleet.crt
       - FLEET_SERVER_CERT_KEY=/usr/share/elastic-agent/fleet/fleet.key
       - FLEET_SERVER_SSL_KEY_PASSPHRASE=pass123
@@ -78,7 +78,7 @@ services:
       - FLEET_SERVER_HOST=0.0.0.0
       - FLEET_SERVER_PORT=8220
       - FLEET_URL=https://192.168.23.109:8220 # agent env
-#      - FLEET_CA=/usr/share/elastic-agent/fleet/ca.crt # agent env
+#      - FLEET_CA=/usr/share/elastic-agent/fleet/ca.crt # agent env # the error about ca shows up after enabling this one
 #      - FLEET_SERVER_INSECURE_HTTP=true # this line disables ca checking process
     ports:
       - "8220:8220"
