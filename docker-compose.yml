@@ -15,19 +15,15 @@ services:
       - xpack.security.http.ssl.enabled=true
       - xpack.security.http.ssl.keystore.path=/usr/share/elasticsearch/config/elasticsearch.p12
       - xpack.security.http.ssl.certificate_authorities=/usr/share/elasticsearch/config/ca.crt
-#      - xpack.security.http.ssl.keystore.password=pass123
-#      - xpack.security.http.ssl.verification_mode=none
     volumes:
       - kibana_cert:/usr/share/elasticsearch/kibana
       - elastic_cert:/usr/share/elasticsearch/elasticsearch
       - fleet_cert:/usr/share/elasticsearch/fleet
       - es_data:/usr/share/elasticsearch/data
       - es_config:/usr/share/elasticsearch/config
-      - ./ca:/usr/share/elasticsearch/ca
+      - ./certificates:/usr/share/elasticsearch/ca
   visualizer:
     container_name: kibana
-#    command: ["kibana", "--allow-root"]
-#    user: root
     ports:
       - "5601:5601"
     image: kibana:9.1.0
@@ -35,14 +31,12 @@ services:
       - ELASTICSEARCH_HOSTS=https://elastic:9200
       - ELASTICSEARCH_SSL_CERTIFICATEAUTHORITIES=/usr/share/kibana/config/kibana/ca.crt
       - SERVER_SSL_ENABLED=true
-#      - SERVER_SSL_FORMAT=PKCS12
       - SERVER_SSL_CERTIFICATE=/usr/share/kibana/config/kibana/kibana.crt
       - SERVER_SSL_KEY=/usr/share/kibana/config/kibana/kibana.key
       - SERVER_SSL_KEY_PASSPHRASE=pass123
       - ELASTICSEARCH_USERNAME=kibana_system
       - ELASTICSEARCH_PASSWORD=pass123
       - XPACK_ENCRYPTEDSAVEDOBJECTS_ENCRYPTIONKEY="+DLcDWF5uMwWti2Gqg3ehraNrOYAiXsUp4D3mYA2N8o="
-#      - ELASTICSEARCH_SSL_VERIFICATIONMODE=none
     depends_on:
       - db
     volumes:
@@ -63,23 +57,27 @@ services:
 # -------------------------------------------------------
   agent_manager:
     container_name: fleet
-    image: elastic/elastic-agent:9.1.1
+    image: elastic/elastic-agent:9.1.0
     environment:
       - FLEET_SERVER_ENABLE=1
       - ELASTICSEARCH_HOST=https://elastic:9200
-#      - ELASTICSEARCH_USERNAME=kibana_system # enabline username and password made the agent sending data 
-#      - ELASTICSEARCH_PASSWORD=pass123 # but i don't understand the relation between these guys and the service token (on line 76)
+      - ELASTICSEARCH_USERNAME=kibana_system
+      - ELASTICSEARCH_PASSWORD=pass123
       - FLEET_SERVER_CERT=/usr/share/elastic-agent/fleet/fleet.crt
       - FLEET_SERVER_CERT_KEY=/usr/share/elastic-agent/fleet/fleet.key
       - FLEET_SERVER_SSL_KEY_PASSPHRASE=pass123
       - FLEET_SERVER_ELASTICSEARCH_CA=/usr/share/elastic-agent/fleet/ca.crt
+      - FLEET_SERVER_ELASTICSEARCH_CA_TRUSTED_FINGERPRINT=191435773DD46DB054A6D9B6B54F8A71EB6CB085D5E387CCDDFBF1550AC7A8E2
       - FLEET_SERVER_SERVICE_TOKEN=AAEAAWVsYXN0aWMvZmxlZXQtc2VydmVyL3Rva2VuLTE3NTU1MDc1ODMyMzE6Q2xna2h4c3NSRkdJMFFSWGpVeHdDZw
       - FLEET_SERVER_POLICY_ID=fleet-server-policy
       - FLEET_SERVER_HOST=0.0.0.0
       - FLEET_SERVER_PORT=8220
       - FLEET_URL=https://192.168.23.109:8220 # agent env
-#      - FLEET_CA=/usr/share/elastic-agent/fleet/ca.crt # agent env # the error about ca shows up after enabling this one
-#      - FLEET_SERVER_INSECURE_HTTP=true # this line disables ca checking process
+      - FLEET_CA=/usr/share/elastic-agent/fleet/ca.crt # agent env
+      - KIBANA_FLEET_HOST=https://kibana:5601
+      - KIBANA_FLEET_USERNAME=elastic
+      - KIBANA_FLEET_PASSWORD=pass123
+      - KIBANA_FLEET_CA=/usr/share/elastic-agent/fleet/ca.crt
     ports:
       - "8220:8220"
     depends_on:
