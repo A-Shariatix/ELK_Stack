@@ -62,8 +62,6 @@ services:
     environment:
       - FLEET_SERVER_ENABLE=1
       - ELASTICSEARCH_HOST=https://elastic:9200
-#      - ELASTICSEARCH_USERNAME=kibana_system
-#      - ELASTICSEARCH_PASSWORD=pass123
       - FLEET_SERVER_CERT=/usr/share/elastic-agent/fleet/fleet.crt
       - FLEET_SERVER_CERT_KEY=/usr/share/elastic-agent/fleet/fleet.key
       - FLEET_SERVER_SSL_KEY_PASSPHRASE=pass123
@@ -151,9 +149,6 @@ services:
       - FLEET_CA=/usr/share/elastic-agent/linux-agent/ca.crt
       - FLEET_URL=https://fleet_1:8220
       - FLEET_ENROLLMENT_TOKEN=${LINUX_AGENT_ENROLLMENT_TOKEN}
-#      - FLEET_SERVER_ELASTICSEARCH_CA=/usr/share/elastic-agent/fleet/ca.crt
-      - FLEET_CA=/usr/share/elastic-agent/linux-agent/ca.crt
-#      - ELASTICSEARCH_HOST=https://elastic:9200
     depends_on:
       - agent_manager_1
       - agent_manager_2
@@ -161,7 +156,6 @@ services:
     volumes:
       - ./certs/fleet/ca.crt:/usr/share/elastic-agent/linux-agent/ca.crt
       - /var/log/audit:/var/log/audit:ro
-#      - /:/hostfs:ro #security conecerns
       - /var/lib/elastic-agent:/var/lib/elastic-agent
       - /proc:/hostfs/proc:ro
       - /sys:/hostfs/sys:ro
