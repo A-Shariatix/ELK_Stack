@@ -13,15 +13,16 @@ services:
       - ELASTIC_PASSWORD=pass123
       - ES_JAVA_OPTS=-Xms4g  -Xmx4g
       - xpack.security.http.ssl.enabled=true
-      - xpack.security.http.ssl.keystore.path=/usr/share/elasticsearch/config/elasticsearch.p12
-      - xpack.security.http.ssl.certificate_authorities=/usr/share/elasticsearch/config/ca.crt
+      - xpack.security.http.ssl.keystore.path=/usr/share/elasticsearch/config/elasticsearch/elasticsearch.p12
+      - xpack.security.http.ssl.certificate_authorities=/usr/share/elasticsearch/config/elasticsearch/ca.crt
     volumes:
-      - kibana_cert:/usr/share/elasticsearch/kibana
-      - elastic_cert:/usr/share/elasticsearch/elasticsearch
-      - fleet_cert:/usr/share/elasticsearch/fleet
-      - es_data:/usr/share/elasticsearch/data
+#      - kibana_cert:/usr/share/elasticsearch/kibana
+#      - elastic_cert:/usr/share/elasticsearch/elasticsearch
+#      - fleet_cert:/usr/share/elasticsearch/fleet
       - es_config:/usr/share/elasticsearch/config
-      - ./certificates:/usr/share/elasticsearch/ca
+      - es_data:/usr/share/elasticsearch/data
+      - ./certs/elasticsearch:/usr/share/elasticsearch/config/elasticsearch
+      - ./certs:/usr/share/elasticsearch/ca
   visualizer:
     container_name: kibana
     ports:
@@ -41,7 +42,7 @@ services:
       - db
     volumes:
 #      - /kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
-      - kibana_cert:/usr/share/kibana/config/kibana
+      - ./certs/kibana:/usr/share/kibana/config/kibana
     networks:
       - project
 # ------------------------------------------------------
@@ -55,36 +56,116 @@ services:
 #    volumes:
 #      - ./logstash:/usr/share/logstash/pipeline
 # -------------------------------------------------------
-  agent_manager:
-    container_name: fleet
+  agent_manager_1:
+    container_name: fleet_1
     image: elastic/elastic-agent:9.1.0
     environment:
       - FLEET_SERVER_ENABLE=1
       - ELASTICSEARCH_HOST=https://elastic:9200
-      - ELASTICSEARCH_USERNAME=kibana_system
-      - ELASTICSEARCH_PASSWORD=pass123
+#      - ELASTICSEARCH_USERNAME=kibana_system
+#      - ELASTICSEARCH_PASSWORD=pass123
       - FLEET_SERVER_CERT=/usr/share/elastic-agent/fleet/fleet.crt
       - FLEET_SERVER_CERT_KEY=/usr/share/elastic-agent/fleet/fleet.key
       - FLEET_SERVER_SSL_KEY_PASSPHRASE=pass123
       - FLEET_SERVER_ELASTICSEARCH_CA=/usr/share/elastic-agent/fleet/ca.crt
       - FLEET_SERVER_ELASTICSEARCH_CA_TRUSTED_FINGERPRINT=191435773DD46DB054A6D9B6B54F8A71EB6CB085D5E387CCDDFBF1550AC7A8E2
-      - FLEET_SERVER_SERVICE_TOKEN=AAEAAWVsYXN0aWMvZmxlZXQtc2VydmVyL3Rva2VuLTE3NTU1MDc1ODMyMzE6Q2xna2h4c3NSRkdJMFFSWGpVeHdDZw
+      - FLEET_SERVER_SERVICE_TOKEN=${FLEET_1_SERVICE_TOKEN}
       - FLEET_SERVER_POLICY_ID=fleet-server-policy
       - FLEET_SERVER_HOST=0.0.0.0
       - FLEET_SERVER_PORT=8220
       - FLEET_URL=https://192.168.23.109:8220 # agent env
       - FLEET_CA=/usr/share/elastic-agent/fleet/ca.crt # agent env
-      - KIBANA_FLEET_HOST=https://kibana:5601
-      - KIBANA_FLEET_USERNAME=elastic
-      - KIBANA_FLEET_PASSWORD=pass123
-      - KIBANA_FLEET_CA=/usr/share/elastic-agent/fleet/ca.crt
+      - FLEET_SERVER_TIMEOUT=300s
+#      - KIBANA_FLEET_HOST=https://kibana:5601
+#      - KIBANA_FLEET_USERNAME=elastic
+#      - KIBANA_FLEET_PASSWORD=pass123
+#      - KIBANA_FLEET_CA=/usr/share/elastic-agent/fleet/ca.crt
     ports:
       - "8220:8220"
     depends_on:
       - visualizer
       - db
     volumes:
-      - fleet_cert:/usr/share/elastic-agent/fleet
+      - ./certs/fleet:/usr/share/elastic-agent/fleet
+    networks:
+      - project
+  agent_manager_2:
+    container_name: fleet_2
+    image: elastic/elastic-agent:9.1.0
+    environment:
+      - FLEET_SERVER_ENABLE=1
+      - ELASTICSEARCH_HOST=https://elastic:9200
+      - FLEET_SERVER_CERT=/usr/share/elastic-agent/fleet/fleet.crt
+      - FLEET_SERVER_CERT_KEY=/usr/share/elastic-agent/fleet/fleet.key
+      - FLEET_SERVER_SSL_KEY_PASSPHRASE=pass123
+      - FLEET_SERVER_ELASTICSEARCH_CA=/usr/share/elastic-agent/fleet/ca.crt
+      - FLEET_SERVER_ELASTICSEARCH_CA_TRUSTED_FINGERPRINT=191435773DD46DB054A6D9B6B54F8A71EB6CB085D5E387CCDDFBF1550AC7A8E2
+      - FLEET_SERVER_SERVICE_TOKEN=${FLEET_2_SERVICE_TOKEN}
+      - FLEET_SERVER_POLICY_ID=fleet-server-policy
+      - FLEET_SERVER_HOST=0.0.0.0
+      - FLEET_SERVER_PORT=8220
+      - FLEET_URL=https://192.168.23.109:8221
+      - FLEET_CA=/usr/share/elastic-agent/fleet/ca.crt
+      - FLEET_SERVER_TIMEOUT=300s
+    ports:
+      - "8221:8220"
+    depends_on:
+      - visualizer
+      - db
+    volumes:
+      - ./certs/fleet:/usr/share/elastic-agent/fleet
+    networks:
+      - project
+#  agent_manager_3:
+#    container_name: fleet_3
+#    image: elastic/elastic-agent:9.1.0
+#    environment:
+#      - FLEET_SERVER_ENABLE=1
+#      - ELASTICSEARCH_HOST=https://elastic:9200
+#      - FLEET_SERVER_CERT=/usr/share/elastic-agent/fleet/fleet.crt
+#      - FLEET_SERVER_CERT_KEY=/usr/share/elastic-agent/fleet/fleet.key
+#      - FLEET_SERVER_SSL_KEY_PASSPHRASE=pass123
+#      - FLEET_SERVER_ELASTICSEARCH_CA=/usr/share/elastic-agent/fleet/ca.crt
+#      - FLEET_SERVER_ELASTICSEARCH_CA_TRUSTED_FINGERPRINT=191435773DD46DB054A6D9B6B54F8A71EB6CB085D5E387CCDDFBF1550AC7A8E2
+#      - FLEET_SERVER_SERVICE_TOKEN=${FLEET_3_SERVICE_TOKEN}
+#      - FLEET_SERVER_POLICY_ID=fleet-server-policy
+#      - FLEET_SERVER_HOST=0.0.0.0
+#      - FLEET_SERVER_PORT=8220
+#      - FLEET_URL=https://192.168.23.109:8222
+#      - FLEET_CA=/usr/share/elastic-agent/fleet/ca.crt
+#      - FLEET_SERVER_TIMEOUT=300s
+#    ports:
+#      - "8222:8220"
+#    depends_on:
+#      - visualizer
+#      - db
+#    volumes:
+#      - ./certs/fleet:/usr/share/elastic-agent/fleet
+#    networks:
+#      - project
+  os_agent:
+    container_name: linux-agent
+    image: elastic/elastic-agent:9.1.0
+    environment:
+      - FLEET_ENROLL=1
+      - FLEET_CA=/usr/share/elastic-agent/linux-agent/ca.crt
+      - FLEET_URL=https://fleet_1:8220
+      - FLEET_ENROLLMENT_TOKEN=${LINUX_AGENT_ENROLLMENT_TOKEN}
+#      - FLEET_SERVER_ELASTICSEARCH_CA=/usr/share/elastic-agent/fleet/ca.crt
+      - FLEET_CA=/usr/share/elastic-agent/linux-agent/ca.crt
+#      - ELASTICSEARCH_HOST=https://elastic:9200
+    depends_on:
+      - agent_manager_1
+      - agent_manager_2
+#      - agent_manager_3
+    volumes:
+      - ./certs/fleet/ca.crt:/usr/share/elastic-agent/linux-agent/ca.crt
+      - /var/log/audit:/var/log/audit:ro
+#      - /:/hostfs:ro #security conecerns
+      - /var/lib/elastic-agent:/var/lib/elastic-agent
+      - /proc:/hostfs/proc:ro
+      - /sys:/hostfs/sys:ro
+      - /var/log:/hostfs/var/log:ro
     networks:
       - project
 networks:
@@ -93,6 +174,6 @@ networks:
 volumes:
   es_data:
   es_config:
-  fleet_cert:
-  elastic_cert:
-  kibana_cert:
+#  fleet_cert:
+#  elastic_cert:
+#  kibana_cert:
