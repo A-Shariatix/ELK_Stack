@@ -1,5 +1,5 @@
 ## Overview
-This project is a demo implementation of a system that aggregates, stores, and visualizes logs and metrics. The Docker Compose deployment provides Elasticsearch for storage, Kibana for visualization, a Fleet server cluster consisting of three nodes to manage Elastic Agents, and an Elastic agent configured to collect data from a Linux server. A custom bridge network named "project" has been created to provide isolated interconnection between containers. Multiple mount points and volumes have been set for data persistence. See the description below for more details.
+This project is a demo implementation of a system that aggregates, stores, and visualizes logs and metrics. The deployment through Docker-Compose provides Elasticsearch for storage, Kibana for visualization, a Fleet cluster consisting of three nodes to manage Elastic Agents, and an Elastic agent configured to collect data from a Linux server. A custom bridge network named "project" has been created to provide isolated interconnection between containers. Multiple mount points and volumes have been set for data persistence. See the description below for more details.
 
 ## Description
 **Elasticsearch**:<br>
@@ -11,3 +11,4 @@ The fleet containers use elastic/elastic-agent:9.1.0 image. <br>
 **Elastic_Agent**:<br>
 The linux-agent container uses the same image as fleet containers. <br>
 
+## Installation
