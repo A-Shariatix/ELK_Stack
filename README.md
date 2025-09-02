@@ -12,8 +12,8 @@ This project is a demo implementation of a system that aggregates, stores, and v
 <br>
 
 ## Installation
-1- Install docker on your host if you haven't
-2- Run "dockerd&" command in terminal to start docker daemon in the background of your host (if it is not running already)
-3- Download the files of this repo into your host (note: make sure that the project's structure on your system is as same as it is on this repo)
-4- Define your own configurations inside .env file
-5- Run "docker compose up" command on your host
+1- Install docker on your host if you haven't<br>
+2- Run "dockerd&" command in terminal to start docker daemon in the background of your host (if it is not running already)<br>
+3- Download the files of this repo into your host (note: make sure that the project's structure on your system is as same as it is on this repo)<br>
+4- Define your own configurations inside .env file<br>
+5- Run "docker compose up" command on your host<br>
