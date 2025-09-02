@@ -1,7 +1,7 @@
 >## Overview
->>*Elasticsearch*:
+>>**Elasticsearch**:
 >><br>
->>Kibana<br>
->>Fleet<br>
+>>**Kibana**<br>
+>>**Fleet**<br>
 
 ## 
