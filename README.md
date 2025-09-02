@@ -12,7 +12,7 @@ This project is a demo implementation of a system that aggregates, stores, and v
 >xpack.security.http.ssl.keystore.path => specifies the path to keystore of the CA<br>
 >xpack.security.http.ssl.certificate_authorities => specifies the path to CA<br>
 >ELASTIC_PASSWORD => creates a password for "elastic" user in Elasticsearch<br>
->ES_JAVA_OPTS => specifies init and max use of memory<br>
+>ES_JAVA_OPTS => specifies Xms (initial allowed memory usage) and Xmx (maximum allowed memory usage)<br>
 - volumes => <br>
 
 **Kibana**:<br>
