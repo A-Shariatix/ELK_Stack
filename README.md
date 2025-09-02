@@ -1,5 +1,6 @@
 >## Overview
->>Elasticsearch<br>
+>>*Elasticsearch*:
+>><br>
 >>Kibana<br>
 >>Fleet<br>
 
