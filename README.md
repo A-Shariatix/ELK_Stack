@@ -5,7 +5,7 @@ This project is a demo implementation of a system that aggregates, stores, and v
 **Elasticsearch**:<br>
 - image => elasticsearch:9.1.0<br>
 - ports => Elasticsearch by default uses port 9200 as a connection gateway with external nodes including kibana, fleet, and elastic agents (also port 9300 is used for inter-cluster communication between Elasticsearch nodes). In this project the 9200 port is mapped into the same port on host so the agents from remote systems can access the Elasticsearch container.<br>
-
+>- environment => 
 **Kibana**:<br>
 <br>
 **Fleet**:<br>
