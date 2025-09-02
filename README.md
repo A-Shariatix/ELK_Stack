@@ -5,9 +5,9 @@ This project is a demo implementation of a system that aggregates, stores, and v
 **Elasticsearch**:<br>
 The elastic container uses elasticsearch:9.1.0 image. It is configured to run in single-node mode. The 9200 port is the default port of Elasticsearch and it is mapped to the same port on host, so it is accessible for the agents outside of docker. <br>
 **Kibana**:<br>
-<br>
+The kibana container uses kibana:9.1.0 image. <br>
 **Fleet**:<br>
-<br>
+The fleet containers use elastic/elastic-agent:9.1.0 image. <br>
 **Elastic_Agent**:<br>
-<br>
+The linux-agent container uses the same image as fleet containers. <br>
 
