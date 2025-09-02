@@ -6,13 +6,13 @@ This project is a demo implementation of a system that aggregates, stores, and v
 - image => elasticsearch:9.1.0<br>
 - ports => Elasticsearch by default uses port 9200 as a connection gateway with external nodes including kibana, fleet, and elastic agents (also port 9300 is used for inter-cluster communication between Elasticsearch nodes). In this project the 9200 port is mapped into the same port on host so the agents from remote systems can access the Elasticsearch container.<br>
 - environment => <br>
->discovery.type => when set to single-node, Elasticsearch creates a single-noded cluster<br>
->xpack.security.enabled => enables authentication and blocks annonymous access to Elasticsearch users if set as true<br>
->xpack.security.http.ssl.enabled => enables communication over https<br>
->xpack.security.http.ssl.keystore.path => specifies the path to keystore of the CA<br>
->xpack.security.http.ssl.certificate_authorities => specifies the path to CA<br>
->ELASTIC_PASSWORD => creates a password for "elastic" user in Elasticsearch<br>
->ES_JAVA_OPTS => specifies Xms (initial allowed memory usage) and Xmx (maximum allowed memory usage)<br>
+>discovery.type -> when set to single-node, Elasticsearch creates a single-noded cluster<br>
+>xpack.security.enabled -> enables authentication and blocks annonymous access to Elasticsearch users if set as true<br>
+>xpack.security.http.ssl.enabled -> enables communication over https<br>
+>xpack.security.http.ssl.keystore.path -> specifies the path to keystore of the CA<br>
+>xpack.security.http.ssl.certificate_authorities -> specifies the path to CA<br>
+>ELASTIC_PASSWORD -> creates a password for "elastic" user in Elasticsearch<br>
+>ES_JAVA_OPTS -> specifies Xms (initial allowed memory usage) and Xmx (maximum allowed memory usage)<br>
 - volumes => there are two defined volumes here; es_config and es_data. es_config makes sure elasticsearch keystore and other configs inside config directory persist. es_data on the other hand, saves the data that has been stored in Elasticsearch. there are also two mount points used to share the certs and the CA. the first one mounts two elasticsearch directories together to make the .p12 and CA files available for Elasticsearch. the second one was made at first place to make sure that the made certs and the CA are mounted to the host for two purposes; using openssl which is not available in the containers and making the certs and the CA available for all services.<br>
 
 **Kibana**:<br>
