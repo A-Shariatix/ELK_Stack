@@ -1,14 +1,19 @@
 ## Overview
-This project is a demo implementation of a system that aggregates, stores, and visualizes logs and metrics. The deployment through Docker-Compose provides Elasticsearch for storage, Kibana for visualization, a Fleet cluster consisting of three nodes to manage Elastic Agents, and an Elastic agent configured to collect data from a Linux server. A custom bridge network named "project" has been created to provide isolated interconnection between containers. Multiple mount points and volumes have been set for data persistence. See the description below for more details.
+This project is a demo implementation of a system that aggregates, stores, and visualizes logs and metrics. The deployment through Docker-Compose provides Elasticsearch for storage, Kibana for visualization, a Fleet cluster consisting of three nodes to manage Elastic Agents, and an Elastic agent configured to collect data from a Linux server. A custom bridge network named "project" has been created to provide isolated interconnection between containers. Multiple mount points and volumes have been set for data persistence. See the description below for more details about docker-compose.yml file.
 
 ## Description
 **Elasticsearch**:<br>
-The elastic container uses elasticsearch:9.1.0 image. It is configured to run in single-node mode. The 9200 port is the default port of Elasticsearch and it is mapped to the same port on host, so it is accessible for the agents outside of docker. <br>
+<br>
 **Kibana**:<br>
-The kibana container uses kibana:9.1.0 image. <br>
+<br>
 **Fleet**:<br>
-The fleet containers use elastic/elastic-agent:9.1.0 image. <br>
+<br>
 **Elastic_Agent**:<br>
-The linux-agent container uses the same image as fleet containers. <br>
+<br>
 
 ## Installation
+1- Install docker on your host if you haven't
+2- Run "dockerd&" command in terminal to start docker daemon in the background of your host (if it is not running already)
+3- Download the files of this repo into your host (note: make sure that the project's structure on your system is as same as it is on this repo)
+4- Define your own configurations inside .env file
+5- Run "docker compose up" command on your host
