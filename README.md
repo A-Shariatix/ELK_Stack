@@ -6,14 +6,15 @@ This project is a demo implementation of a system that aggregates, stores, and v
 - image => elasticsearch:9.1.0<br>
 - ports => Elasticsearch by default uses port 9200 as a connection gateway with external nodes including kibana, fleet, and elastic agents (also port 9300 is used for inter-cluster communication between Elasticsearch nodes). In this project the 9200 port is mapped into the same port on host so the agents from remote systems can access the Elasticsearch container.<br>
 - environment => <br>
->discovery.type => <br>
->xpack.security.enabled => <br>
->xpack.security.http.ssl.enabled => <br>
->xpack.security.http.ssl.keystore.path => <br>
->xpack.security.http.ssl.certificate_authorities => <br>
->ELASTIC_PASSWORD => <br>
->ES_JAVA_OPTS => <br>
+>discovery.type => when set to single-node, Elasticsearch creates a single-noded cluster<br>
+>xpack.security.enabled => enables authentication and blocks annonymous access to Elasticsearch users if set as true<br>
+>xpack.security.http.ssl.enabled => enables communication over https<br>
+>xpack.security.http.ssl.keystore.path => specifies the path to keystore of the CA<br>
+>xpack.security.http.ssl.certificate_authorities => specifies the path to CA<br>
+>ELASTIC_PASSWORD => creates a password for "elastic" user in Elasticsearch<br>
+>ES_JAVA_OPTS => specifies init and max use of memory<br>
 - volumes => <br>
+
 **Kibana**:<br>
 <br>
 **Fleet**:<br>
