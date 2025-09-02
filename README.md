@@ -9,6 +9,7 @@ This project is a demo implementation of a system that aggregates, stores, and v
 >discovery.type => introduces single-node mode<br>
 >sfsd<br>
 >sdf<br>
+
 **Kibana**:<br>
 <br>
 **Fleet**:<br>
