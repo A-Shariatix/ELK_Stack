@@ -1,5 +1,5 @@
 ## Overview
-This project is a demo implementation of a system which aggregates, stores and visualizes logs of a linux server by default.
+This project is a demo implementation of a system that aggregates, stores, and visualizes logs and metrics. It is deployed using a Docker Compose , which includes an Elasticsearch container, a Kibana container, three Fleet containers (called Fleet cluster), and an Elastic Agent configured to collect a Linux server's logs (using system and auditd integrations through policy).
 
 ## Description
 **Elasticsearch**:<br>
