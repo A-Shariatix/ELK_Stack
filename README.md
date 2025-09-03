@@ -16,13 +16,22 @@ This project is a demo implementation of a system that aggregates, stores, and v
 - volumes => there are two defined volumes here; es_config and es_data. es_config makes sure elasticsearch keystore and other configs inside config directory persist. es_data on the other hand, saves the data that has been stored in Elasticsearch. there are also two mount points used to share the certs and the CA. the first one mounts two elasticsearch directories together to make the .p12 and CA files available for Elasticsearch. the second one was made at first place to make sure that the made certs and the CA are mounted to the host for two purposes; using openssl which is not available in the containers and making the certs and the CA available for all services.<br>
 
 ### **Kibana**:<br>
-<br>
+- image => <br>
+- ports => <br>
+- environment => <br>
+- volumes => <br>
 
 ### **Fleet**:<br>
-<br>
+- image => <br>
+- ports => <br>
+- environment => <br>
+- volumes => <br>
 
 ### **Elastic_Agent**:<br>
-<br>
+- image => <br>
+- ports => <br>
+- environment => <br>
+- volumes => <br>
 
 ## Installation
 1- Install docker on your host if you haven't<br>
