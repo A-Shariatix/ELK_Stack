@@ -6,7 +6,7 @@ This project is a demo implementation of a system that aggregates, stores, and v
 - image => elasticsearch:9.1.0<br>
 - ports => Elasticsearch defaults to using port 9200 for its REST API to enable communication with external clients such as Kibana, Fleet, and Elastic Agents. Port 9300 is reserved for inter-node communication within Elasticsearch cluster. As this deployment uses a single-node cluster, the 9300 port is unused. Port 9200 is mapped into the same port on the host to expose the Elasticsearch service to the remote clients.<br>
 - environment => <br>
->discovery.type -> when set to single-node, Elasticsearch creates a single-noded cluster<br>
+>**discovery.type** -> when set to single-node, Elasticsearch creates a single-noded cluster<br>
 >xpack.security.enabled -> when set to true, enables authentication and blocks anonymous access to Elasticsearch users<br>
 >xpack.security.http.ssl.enabled -> when set to true, HTTPS activates and therefore only encrypted traffic is accepted to Elasticsearch<br>
 >xpack.security.http.ssl.keystore.path -> specifies the path to the PKCS#12 file that includes the required private key and its corresponding X.509 certificate<br>
