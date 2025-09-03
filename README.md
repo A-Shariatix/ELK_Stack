@@ -6,18 +6,19 @@ This project is a demo implementation of a system that aggregates, stores, and v
 - image => elasticsearch:9.1.0<br>
 - ports => Elasticsearch defaults to using port 9200 for its REST API to enable communication with external clients such as Kibana, Fleet, and Elastic Agents. Port 9300 is reserved for inter-node communication within Elasticsearch cluster. As this deployment uses a single-node cluster, the 9300 port is unused. Port 9200 is mapped into the same port on the host to expose the Elasticsearch service to the remote clients.<br>
 - environment => There are two ways to configure the services: using config files and mounting them via volumes section, or defining configuration variables in the environment section (which is used in this project). Below is a detailed explanation of used environment variables:<br>
->**discovery.type** -> when set to single-node, Elasticsearch creates a single-noded cluster<br>
->**xpack.security.enabled** -> when set to true, enables authentication and blocks anonymous access to Elasticsearch users<br>
->**xpack.security.http.ssl.enabled** -> when set to true, HTTPS activates and therefore only encrypted traffic is accepted to Elasticsearch<br>
->**xpack.security.http.ssl.keystore.path** -> specifies the path to the PKCS#12 file that includes the required private key and its corresponding X.509 certificate<br>
->**xpack.security.http.ssl.certificate_authorities** -> specifies the path to the CA's certificate file, which is required to verify the authenticity of certificates presented by external clients during mTLS handshake<br>
->**ELASTIC_PASSWORD** -> sets a password for the built-in "elastic" superuser during the initial bootstrap of a new Elasticsearch node<br>
->**ES_JAVA_OPTS** -> used for setting JVM arguments such as Xms (initial heap size) and Xmx (maximum heap size)<br>
+>**discovery.type** -> When set to single-node, Elasticsearch creates a single-noded cluster.<br>
+>**xpack.security.enabled** -> When set to true, enables authentication and blocks anonymous access to Elasticsearch users.<br>
+>**xpack.security.http.ssl.enabled** -> When set to true, HTTPS activates and therefore only encrypted traffic is accepted to Elasticsearch.<br>
+>**xpack.security.http.ssl.keystore.path** -> Specifies the path to the PKCS#12 file that includes the required private key and its corresponding X.509 certificate.<br>
+>**xpack.security.http.ssl.certificate_authorities** -> Specifies the path to the CA's certificate file, which is required to verify the authenticity of certificates presented by external clients during mTLS handshake.<br>
+>**ELASTIC_PASSWORD** -> Sets a password for the built-in "elastic" superuser during the initial bootstrap of a new Elasticsearch node.<br>
+>**ES_JAVA_OPTS** -> Used for setting JVM arguments such as Xms (initial heap size) and Xmx (maximum heap size).<br>
 - volumes => Docker provides two methods for data persistence: named volumes and bind mounts. Two volumes are exclusively used for Elasticsearch in this project, named es_config and es_data. There are also two mount points used for sharing data between the host and Elasticsearch container. Check the below explanation for more details:<br>
->**es_config** -> <br>
->**es_data** -> <br>
->**bind_mount_1** -> <br>
->**bind_mount_2** -> <br>
+>**es_config** -> Persists contents of /usr/share/elasticsearch/config directory. One of the important files in that directory is elasticsearch.keystore which holds the password for the PKCS#12 file.<br>
+>**es_data** -> Persists the main database storage of Elasticsearch. These data are stored in /usr/share/elasticsearch/data directory.<br>
+>**bind_mount_1** -> Mounts the Elasticsearch's PKCS#12 and the CA files from the host to /usr/share/elasticsearch/config/elasticsearch directory<br>
+>**bind_mount_2** -> Mounts the manually created certs and the CA from inside the Elasticsearch container to the host with the intention of making them accessible for all services.<br>
+
 ### **Kibana**:<br>
 - image => <br>
 - ports => <br>
