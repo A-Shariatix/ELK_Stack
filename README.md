@@ -13,8 +13,11 @@ This project is a demo implementation of a system that aggregates, stores, and v
 >**xpack.security.http.ssl.certificate_authorities** -> specifies the path to the CA's certificate file, which is required to verify the authenticity of certificates presented by external clients during mTLS handshake<br>
 >**ELASTIC_PASSWORD** -> sets a password for the built-in "elastic" superuser during the initial bootstrap of a new Elasticsearch node<br>
 >**ES_JAVA_OPTS** -> used for setting JVM arguments such as Xms (initial heap size) and Xmx (maximum heap size)<br>
-- volumes => there are two defined volumes here; es_config and es_data. es_config makes sure elasticsearch keystore and other configs inside config directory persist. es_data on the other hand, saves the data that has been stored in Elasticsearch. there are also two mount points used to share the certs and the CA. the first one mounts two elasticsearch directories together to make the .p12 and CA files available for Elasticsearch. the second one was made at first place to make sure that the made certs and the CA are mounted to the host for two purposes; using openssl which is not available in the containers and making the certs and the CA available for all services.<br>
-
+- volumes => Docker provides two methods for data persistence; named volumes and bind mounts. There are two volumes used exclusively for Elasticsearch in this project, named es_config and es_data. There are also two mountpoints used for sharing data between the host and Elasticsearch container.<br>
+>**es_config** ->
+>**es_data** ->
+>**1** ->
+>**2** ->
 ### **Kibana**:<br>
 - image => <br>
 - ports => <br>
