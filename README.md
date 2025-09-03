@@ -59,7 +59,7 @@ This project is a demo implementation of a system that aggregates, stores, and v
   **FLEET_SERVER_POLICY_ID** -> Specifies the created policy's ID. The policy can be created through Fleet API or Fleet UI on Kibana.<br>
   **FLEET_SERVER_HOST** -> Defines the IP address that hosts the Fleet server in container. The default value is 127.0.0.1.<br>
   **FLEET_SERVER_PORT** -> Defines the port that is bound to the mentioned IP address.<br>
-  **FLEET_URL** -> Specifies a URL that the agents use to connect to the Fleet server.<br>
+  **FLEET_URL** -> Specifies a URL that the agents use to connect to this Fleet Server.<br>
   **FLEET_CA** -> Specifies path to the CA file.<br>
   **FLEET_SERVER_TIMEOUT** -> Defines how long the Fleet server waits for Elasticsearch to start completely. defaults to 2 minutes.<br>
   **FLEET_SERVER_CERT** -> Specifies path to Fleet server's public certificate file.<br>
@@ -72,16 +72,14 @@ This project is a demo implementation of a system that aggregates, stores, and v
 ### **Elastic_Agent**:<br>
 - #### image:
   elastic/elastic-agent:9.1.0<br>
-- #### ports:
-  <br>
 - #### environment:
-  **** -> <br>
-  **** -> <br>
-  **** -> <br>
-  **** -> <br>
-  **** -> <br>
+  **FLEET_ENROLL** -> When set to true, enables agent enrollment into Fleet server.<br>
+  **FLEET_CA** -> Specifies path to the CA file, which is needed to authenticate external clients' signed certificates.<br>
+  **FLEET_URL** -> Specifies the target Fleet server URL for initial enrollment.<br>
+  **FLEET_ENROLLMENT_TOKEN** -> The Fleet server's enrollment token used to enroll the agent at first place.<br>
 - #### volumes:
-  <br>
+  Several bind-mounts are defined for the Elastic Agent to give it enough access to Linux system logs. Let me explain more details:<br>
+  
 
 ## Installation
 1- Install docker on your host if you haven't<br>
