@@ -79,7 +79,12 @@ This project is a demo implementation of a system that aggregates, stores, and v
   **FLEET_ENROLLMENT_TOKEN** -> The Fleet server's enrollment token used to enroll the agent at first place.<br>
 - #### volumes:
   Several bind-mounts are defined for the Elastic Agent to give it enough access to Linux system logs. Let me explain more details:<br>
-  
+  **./certs/fleet/ca.crt** -> <br>
+  **/var/log/audit** -> <br>
+  **/var/lib/elastic-agent** -> <br>
+  **/var/log** -> <br>
+  **/proc** -> <br>
+  **/sys** -> <br>
 
 ## Installation
 1- Install docker on your host if you haven't already installed it.<br>
