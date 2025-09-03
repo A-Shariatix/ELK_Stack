@@ -14,10 +14,10 @@ This project is a demo implementation of a system that aggregates, stores, and v
 >**ELASTIC_PASSWORD** -> sets a password for the built-in "elastic" superuser during the initial bootstrap of a new Elasticsearch node<br>
 >**ES_JAVA_OPTS** -> used for setting JVM arguments such as Xms (initial heap size) and Xmx (maximum heap size)<br>
 - volumes => Docker provides two methods for data persistence; named volumes and bind mounts. There are two volumes used exclusively for Elasticsearch in this project, named es_config and es_data. There are also two mountpoints used for sharing data between the host and Elasticsearch container.<br>
->**es_config** ->
->**es_data** ->
->**1** ->
->**2** ->
+>**es_config** -> <br>
+>**es_data** -> <br>
+>**1** -> <br>
+>**2** -> <br>
 ### **Kibana**:<br>
 - image => <br>
 - ports => <br>
