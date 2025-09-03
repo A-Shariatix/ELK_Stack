@@ -27,7 +27,7 @@ This project is a demo implementation of a system that aggregates, stores, and v
 
 ### **Kibana**:<br>
 - #### image:
-  <br>
+  kibana:9.1.0<br>
 - #### ports:
   <br>
 - #### environment:
@@ -37,7 +37,7 @@ This project is a demo implementation of a system that aggregates, stores, and v
 
 ### **Fleet**:<br>
 - #### image:
-  <br>
+  elastic/elastic-agent:9.1.0<br>
 - #### ports:
   <br>
 - #### environment:
@@ -47,7 +47,7 @@ This project is a demo implementation of a system that aggregates, stores, and v
 
 ### **Elastic_Agent**:<br>
 - #### image:
-  <br>
+  elastic/elastic-agent:9.1.0<br>
 - #### ports:
   <br>
 - #### environment:
