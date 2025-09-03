@@ -82,8 +82,8 @@ This project is a demo implementation of a system that aggregates, stores, and v
   
 
 ## Installation
-1- Install docker on your host if you haven't<br>
-2- Run "dockerd&" command in terminal to start docker daemon in the background of your host (if it is not running already)<br>
-3- Download the files of this repo into your host (note: make sure that the project's structure on your system is as same as it is on this repo)<br>
-4- Define your own configurations inside .env file<br>
-5- Run "docker compose up" command on your host<br>
+1- Install docker on your host if you haven't already installed it.<br>
+2- Run "dockerd&" command in terminal to start docker daemon as a background service (if it is not running already).<br>
+3- Download the files of this repo into your host (note: make sure that the certs directory is on the same path as docker-compose.yml is).<br>
+4- Define your system's configurations in a .env file and place it into the same path as the docker-compose.yml.<br>
+5- Run "docker compose up" command on your host to deploy the services (make sure your system has at least 8GB or more free memory).<br>
