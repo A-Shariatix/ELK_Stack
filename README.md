@@ -2,7 +2,7 @@
 This project is a demo implementation of a system that aggregates, stores, and visualizes logs and metrics. The deployment through Docker-Compose provides Elasticsearch for storage, Kibana for visualization, a Fleet cluster consisting of three nodes to manage Elastic Agents, and an Elastic Agent configured to collect data from a Linux server. A custom bridge network named "project" has been created to provide isolated interconnection between containers. Multiple mount points and volumes have been set for data persistence. See the description below for more details about each service in Docker-Compose file.
 
 ## Description
-**Elasticsearch**:<br>
+### **Elasticsearch**:<br>
 - image => elasticsearch:9.1.0<br>
 - ports => Elasticsearch defaults to using port 9200 for its REST API to enable communication with external clients such as Kibana, Fleet, and Elastic Agents. Port 9300 is reserved for inter-node communication within Elasticsearch cluster. As this deployment uses a single-node cluster, the 9300 port is unused. Port 9200 is mapped into the same port on the host to expose the Elasticsearch service to the remote clients.<br>
 - environment => <br>
