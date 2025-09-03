@@ -26,26 +26,34 @@ This project is a demo implementation of a system that aggregates, stores, and v
   **bind_mount_2** -> Mounts the manually created certs and the CA from inside the Elasticsearch container to the host with the intention of making them accessible for all services.<br>
 
 ### **Kibana**:<br>
-- #### image =>
-  kibana:9.1.0<br>
-- #### ports =>
+- #### image:
   <br>
-- #### environment =>
+- #### ports:
   <br>
-- #### volumes =>
+- #### environment:
+  <br>
+- #### volumes:
   <br>
 
 ### **Fleet**:<br>
-- image => elastic/elastic-agent:9.1.0<br>
-- ports => <br>
-- environment => <br>
-- volumes => <br>
+- #### image:
+  <br>
+- #### ports:
+  <br>
+- #### environment:
+  <br>
+- #### volumes:
+  <br>
 
 ### **Elastic_Agent**:<br>
-- image => elastic/elastic-agent:9.1.0<br>
-- ports => <br>
-- environment => <br>
-- volumes => <br>
+- #### image:
+  <br>
+- #### ports:
+  <br>
+- #### environment:
+  <br>
+- #### volumes:
+  <br>
 
 ## Installation
 1- Install docker on your host if you haven't<br>
