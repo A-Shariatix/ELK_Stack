@@ -50,9 +50,18 @@ This project is a demo implementation of a system that aggregates, stores, and v
 - #### image:
   elastic/elastic-agent:9.1.0<br>
 - #### ports:
-  <br>
+  An Elastic Agent uses port 8220, when it is configured to act as a Fleet server. This port should get published on the host, if Agents or Elasticsearch nodes from the host or remote systems try to connect to Fleet.<br>
 - #### environment:
-  <br>
+  **** -> <br>
+  **** -> <br>
+  **** -> <br>
+  **** -> <br>
+  **** -> <br>
+  **** -> <br>
+  **** -> <br>
+  **** -> <br>
+  **** -> <br>
+  **** -> <br>
 - #### volumes:
   <br>
 
@@ -63,7 +72,11 @@ This project is a demo implementation of a system that aggregates, stores, and v
 - #### ports:
   <br>
 - #### environment:
-  <br>
+  **** -> <br>
+  **** -> <br>
+  **** -> <br>
+  **** -> <br>
+  **** -> <br>
 - #### volumes:
   <br>
 
