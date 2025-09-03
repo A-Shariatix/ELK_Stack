@@ -52,19 +52,19 @@ This project is a demo implementation of a system that aggregates, stores, and v
 - #### ports:
   An Elastic Agent uses port 8220 when configured to act as a Fleet server. This port should be published on the host if agents or Elasticsearch nodes from remote systems need to connect to it.<br>
 - #### environment:
-  **ELASTICSEARCH_HOST** -> <br>
-  **FLEET_SERVER_ELASTICSEARCH_CA_TRUSTED_FINGERPRINT** -> <br>
-  **FLEET_SERVER_ENABLE** -> <br>
-  **FLEET_SERVER_SERVICE_TOKEN** -> <br>
-  **FLEET_SERVER_POLICY_ID** -> <br>
-  **FLEET_SERVER_HOST** -> <br>
-  **FLEET_SERVER_PORT** -> <br>
-  **FLEET_URL** -> <br>
-  **FLEET_CA** -> <br>
-  **FLEET_SERVER_TIMEOUT** -> <br>
-  **FLEET_SERVER_CERT** -> <br>
-  **FLEET_SERVER_CERT_KEY** -> <br>
-  **FLEET_SERVER_SSL_KEY_PASSPHRASE** -> <br>
+  **ELASTICSEARCH_HOST** -> Specifies the Elasticsearch host address.<br>
+  **FLEET_SERVER_ELASTICSEARCH_CA_TRUSTED_FINGERPRINT** -> Specifies the Elasticsearch trusted fingerprint. Used instead of the CA file. for using the CA file in .pem format, FLEET_SERVER_ELASTICSEARCH_CA variable can be used.<br>
+  **FLEET_SERVER_ENABLE** -> When set to 1, bootstraps Fleet server on the Elastic Agent.<br>
+  **FLEET_SERVER_SERVICE_TOKEN** -> Specifies the generated service token by Elasticsearch. This token gets used by a service account to make the connection possible between Elasticsearch and Fleet server.<br>
+  **FLEET_SERVER_POLICY_ID** -> Specifies the created policy's ID. The policy can be created through Fleet API or Fleet UI on Kibana.<br>
+  **FLEET_SERVER_HOST** -> Defines the IP address that hosts the Fleet server in container. The default value is 127.0.0.1.<br>
+  **FLEET_SERVER_PORT** -> Defines the port that is bound to the mentioned IP address.<br>
+  **FLEET_URL** -> Specifies a URL that the agents use to connect to the Fleet server.<br>
+  **FLEET_CA** -> Specifies path to the CA file.<br>
+  **FLEET_SERVER_TIMEOUT** -> Defines how long the Fleet server waits for Elasticsearch to start completely. defaults to 2 minutes.<br>
+  **FLEET_SERVER_CERT** -> Specifies path to Fleet server's public certificate file.<br>
+  **FLEET_SERVER_CERT_KEY** -> Specifies path to Fleet server's private key file.<br>
+  **FLEET_SERVER_SSL_KEY_PASSPHRASE** -> Sets the password of private key file.<br>
 - #### volumes:
   <br>
 
