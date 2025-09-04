@@ -87,9 +87,9 @@ This project provisions a simple system that aggregates, stores, and visualizes 
   **/sys** -> <br>
 
 ## Installation
-1- Install and run docker (https://docs.docker.com/engine/install/).<br>
-2- Download the files of this repo into your host. you can also use your own certificates by replacing them with the current ones (note: make sure that the certs directory is on the same path as docker-compose.yml is).<br>
-3- Add Elasticsearch private key's password to the keystore using "./bin/elasticsearch-keystore add xpack.security.http.ssl.keystore.secure_password" command inside the elastic container.<br>
-4- Change password of the "kibana_system" bulit-in user from inside the elastic container using "bin/elasticsearch-reset-password -u kibana_system -i" command (if you remove the -i, a random password will be generated). The point of making this step, is to make sure that Kibana can use the mentioned user to connect to Elasticsearch. this password can't get set through the config (only the "elastic" user's password can be set through config).<br>
-5- Define your own configurations in the .env file and place it into the same path as the docker-compose.yml. There is a also a ready to use .env file in files section.<br>
-6- Run "docker compose up" command on your host to deploy the services (make sure your host serves at least 8GB or more free memory).<br>
+1. Install and run docker (https://docs.docker.com/engine/install/).<br>
+2. Download the files of this repo into your host. you can also use your own certificates by replacing them with the current ones (note: make sure that the certs directory is on the same path as docker-compose.yml is).<br>
+3. Add Elasticsearch private key's password to the keystore using "./bin/elasticsearch-keystore add xpack.security.http.ssl.keystore.secure_password" command inside the elastic container.<br>
+4. Change password of the "kibana_system" bulit-in user from inside the elastic container using "bin/elasticsearch-reset-password -u kibana_system -i" command (if you remove the -i, a random password will be generated). The point of making this step, is to make sure that Kibana can use the mentioned user to connect to Elasticsearch. this password can't get set through the config (only the "elastic" user's password can be set through config).<br>
+5. Define your own configurations in the .env file and place it into the same path as the docker-compose.yml. There is a also a ready to use .env file in files section.<br>
+6. Run "docker compose up" command on your host to deploy the services (make sure your host serves at least 8GB or more free memory).<br>
