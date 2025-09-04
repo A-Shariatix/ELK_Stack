@@ -87,7 +87,7 @@ This project provisions a simple system that aggregates, stores, and visualizes 
   **/sys** -> <br>
 
 ## Installation
-1- Install docker 
+1- Install docker (https://docs.docker.com/engine/install/).<br>
 2- Download the files of this repo into your host. you can also use your own certificates by replacing them with the current ones (note: make sure that the certs directory is on the same path as docker-compose.yml is).<br>
 3- Add Elasticsearch private key's password to the keystore using "./bin/elasticsearch-keystore add xpack.security.http.ssl.keystore.secure_password" command inside the elastic container.<br>
 4- Change password of the "kibana_system" bulit-in user from inside the elastic container using "bin/elasticsearch-reset-password -u kibana_system -i" command (if you remove the -i, a random password will be generated). The point of making this step, is to make sure that Kibana can use the mentioned user to connect to Elasticsearch. this password can't get set through the config (only the "elastic" user's password can be set through config).<br>
