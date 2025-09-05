@@ -14,12 +14,11 @@ This project provisions a system for aggregating, storing, and visualizing logs 
   - **xpack.security.enabled** -> When set to true, enables authentication and blocks anonymous access to Elasticsearch users.<br>
   - **xpack.security.http.ssl.enabled** -> When set to true, enables HTTPS and enforces TLS for all connections to the Elasticsearch REST API.<br>
   - **xpack.security.http.ssl.keystore.path** -> Specifies path to the PKCS#12 file that includes the required private key and its corresponding X.509 certificate.<br>
-  - **xpack.security.http.ssl.certificate_authorities** -> Specifies path to the CA's certificate file, which is required to verify the authenticity of certificates presented by external clients during mTLS handshake.<br>
+  - **xpack.security.http.ssl.client_authentication** -> Has three options: required, optional, and none (which is the default one). In this config client authentication level is set to optional, which means the Elasticsearch server will ask for clients' certificates, but it's not necessary for clients to provice certificates. However, if a client provides a certificate, it must be valid.<br>
+  - **xpack.security.http.ssl.certificate_authorities** -> Specifies path to the CA certificate file used to verify the authenticity of certificates presented by external clients during TLS handshake. This setting is used only for mTLS.<br>
   - **ELASTIC_PASSWORD** -> Sets a password for the built-in "elastic" superuser during the initial bootstrap of a new Elasticsearch node.<br>
   - **ES_JAVA_OPTS** -> Used for setting JVM arguments such as Xms (initial heap size) and Xmx (maximum heap size).<br>
 - #### volumes:
-  Docker provides two methods for data persistence: named volumes and bind-mounts. Two volumes are exclusively used for Elasticsearch in this project, named es_config and es_data. There are also two mount points used for sharing data between the host and Elasticsearch container. Check the below explanation for more details:<br>
-  
   - **es_config** -> Persists contents of /usr/share/elasticsearch/config directory. One of the important files in that directory is elasticsearch.keystore which holds the password for the PKCS#12 file.<br>
   - **es_data** -> Persists the main database storage of Elasticsearch. These data are stored in /usr/share/elasticsearch/data directory.<br>
   - **./certs/elasticsearch** -> Mounts the Elasticsearch's PKCS#12 and the CA files from the host to /usr/share/elasticsearch/config/elasticsearch directory.<br>
