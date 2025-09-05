@@ -20,9 +20,9 @@ This project provisions a system for aggregating, storing, and visualizing logs 
   - **ES_JAVA_OPTS** -> Used for setting JVM arguments such as Xms (initial heap size) and Xmx (maximum heap size).<br>
 - #### volumes:
   - **es_config** -> Persists contents of /usr/share/elasticsearch/config directory. One of the important files in that directory is elasticsearch.keystore which holds the password for the PKCS#12 file.<br>
-  - **es_data** -> Persists the main database storage of Elasticsearch. These data are stored in /usr/share/elasticsearch/data directory.<br>
-  - **./certs/elasticsearch** -> Mounts the Elasticsearch's PKCS#12 and the CA files from the host to /usr/share/elasticsearch/config/elasticsearch directory.<br>
-  - **./certs** -> Mounts contents of certs directory from host to /usr/share/elasticsearch/ca path in the container. This bind mounting was created in the first place to make the generated certs and the CA available from inside the container to the host (this process is possible due to bidirectional nature of mount propagation).<br>
+  - **es_data** -> Persists Elasticsearch data including indices and data streams in /usr/share/elasticsearch/data directory.<br>
+  - **./certs/elasticsearch** -> Mounts Elasticsearch PKCS#12 keystore (containing private key, CA, and public certificate) and the CA from the host to /usr/share/elasticsearch/config/elasticsearch directory in container.<br>
+  - **./certs** -> Mounts the host's ./certs directory to provide certificate files to the Elasticsearch container.<br>
 
 
 ### **Kibana**:<br>
