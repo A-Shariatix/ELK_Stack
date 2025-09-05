@@ -6,13 +6,13 @@ This project provisions a system for aggregating, storing, and visualizing logs 
 - #### image:
   elasticsearch:9.1.0<br>
 - #### ports:
-  Elasticsearch defaults to using port 9200 for its REST API to enable communication with external clients such as Kibana, Fleet, and Elastic Agents. Port 9300 is reserved for inter-node communication within Elasticsearch cluster. Since this deployment uses a single-node cluster, the 9300 port remains unused. Port 9200 is mapped into the same port on the host to expose the Elasticsearch service to remote clients.<br>
+  Port 9200 on host is mapped to port 9200 on the Elasticsearch container, exposing it's REST API. Port 9300, used for internal cluster communication, is unused in this single-node deployment.<br>
 - #### environment:
-  There are two ways to configure the services: using config files and mounting them via volumes section, Or defining configuration variables in the environment section (which is used in this project). Below is a detailed explanation of the environment variables used:<br>
+  Configuration is managed through environment variables for clarity and ease of deployment. Below is a detailed explanation of the environment variables used:<br>
   
-  - **discovery.type** -> When set to single-node, Elasticsearch creates a single-noded cluster.<br>
+  - **discovery.type** -> When set to single-node, allows a node to start successfully without other cluster nodes. If unset, Elasticsearch defaults to its standard discovery process, which expects to form a multi-node cluster and may cause warnings if other nodes are unreachable.<br>
   - **xpack.security.enabled** -> When set to true, enables authentication and blocks anonymous access to Elasticsearch users.<br>
-  - **xpack.security.http.ssl.enabled** -> When set to true, HTTPS activates and therefore only encrypted traffic is accepted to Elasticsearch.<br>
+  - **xpack.security.http.ssl.enabled** -> When set to true, enables HTTPS and enforces TLS for all connections to the Elasticsearch REST API.<br>
   - **xpack.security.http.ssl.keystore.path** -> Specifies path to the PKCS#12 file that includes the required private key and its corresponding X.509 certificate.<br>
   - **xpack.security.http.ssl.certificate_authorities** -> Specifies path to the CA's certificate file, which is required to verify the authenticity of certificates presented by external clients during mTLS handshake.<br>
   - **ELASTIC_PASSWORD** -> Sets a password for the built-in "elastic" superuser during the initial bootstrap of a new Elasticsearch node.<br>
