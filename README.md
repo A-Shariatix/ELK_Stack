@@ -8,7 +8,7 @@ This project provisions a system for aggregating, storing, and visualizing logs 
 - #### ports:
   Elasticsearch defaults to using port 9200 for its REST API to enable communication with external clients such as Kibana, Fleet, and Elastic Agents. Port 9300 is reserved for inter-node communication within Elasticsearch cluster. Since this deployment uses a single-node cluster, the 9300 port remains unused. Port 9200 is mapped into the same port on the host to expose the Elasticsearch service to remote clients.<br>
 - #### environment:
-  There are two ways to configure the services: using config files and mounting them via volumes section, or defining configuration variables in the environment section (which is used in this project). Below is a detailed explanation of the environment variables used:<br>
+  There are two ways to configure the services: using config files and mounting them via volumes section, Or defining configuration variables in the environment section (which is used in this project). Below is a detailed explanation of the environment variables used:<br>
   
   - **discovery.type** -> When set to single-node, Elasticsearch creates a single-noded cluster.<br>
   - **xpack.security.enabled** -> When set to true, enables authentication and blocks anonymous access to Elasticsearch users.<br>
@@ -20,10 +20,10 @@ This project provisions a system for aggregating, storing, and visualizing logs 
 - #### volumes:
   Docker provides two methods for data persistence: named volumes and bind-mounts. Two volumes are exclusively used for Elasticsearch in this project, named es_config and es_data. There are also two mount points used for sharing data between the host and Elasticsearch container. Check the below explanation for more details:<br>
   
-  **es_config** -> Persists contents of /usr/share/elasticsearch/config directory. One of the important files in that directory is elasticsearch.keystore which holds the password for the PKCS#12 file.<br>
-  **es_data** -> Persists the main database storage of Elasticsearch. These data are stored in /usr/share/elasticsearch/data directory.<br>
-  **./certs/elasticsearch** -> Mounts the Elasticsearch's PKCS#12 and the CA files from the host to /usr/share/elasticsearch/config/elasticsearch directory.<br>
-  **./certs** -> Mounts contents of certs directory from host to /usr/share/elasticsearch/ca path in the container. This bind mounting was created in the first place to make the generated certs and the CA available from inside the container to the host (this process is possible due to bidirectional nature of mount propagation).<br>
+  - **es_config** -> Persists contents of /usr/share/elasticsearch/config directory. One of the important files in that directory is elasticsearch.keystore which holds the password for the PKCS#12 file.<br>
+  - **es_data** -> Persists the main database storage of Elasticsearch. These data are stored in /usr/share/elasticsearch/data directory.<br>
+  - **./certs/elasticsearch** -> Mounts the Elasticsearch's PKCS#12 and the CA files from the host to /usr/share/elasticsearch/config/elasticsearch directory.<br>
+  - **./certs** -> Mounts contents of certs directory from host to /usr/share/elasticsearch/ca path in the container. This bind mounting was created in the first place to make the generated certs and the CA available from inside the container to the host (this process is possible due to bidirectional nature of mount propagation).<br>
 
 
 ### **Kibana**:<br>
@@ -79,12 +79,12 @@ This project provisions a system for aggregating, storing, and visualizing logs 
   - **FLEET_ENROLLMENT_TOKEN** -> The Fleet server's enrollment token used to enroll the agent at first place.<br>
 - #### volumes:
   Several bind-mounts are defined for the Elastic Agent to give it enough access to Linux system logs. Let me explain more details:<br>
-  **./certs/fleet/ca.crt** -> <br>
-  **/var/log/audit** -> <br>
-  **/var/lib/elastic-agent** -> <br>
-  **/var/log** -> <br>
-  **/proc** -> <br>
-  **/sys** -> <br>
+  - **./certs/fleet/ca.crt** -> <br>
+  - **/var/log/audit** -> <br>
+  - **/var/lib/elastic-agent** -> <br>
+  - **/var/log** -> <br>
+  - **/proc** -> <br>
+  - **/sys** -> <br>
 
 ## Installation
 1. Install and run docker (https://docs.docker.com/engine/install/).<br>
