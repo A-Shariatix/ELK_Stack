@@ -6,7 +6,7 @@ This project provisions a system for aggregating, storing, and visualizing logs 
 - #### image:
   elasticsearch:9.1.0<br>
 - #### ports:
-  Port 9200 on host is mapped to port 9200 on the Elasticsearch container, exposing it's REST API. Port 9300, used for internal cluster communication, is unused in this single-node deployment.<br>
+  Port 9200 on host is mapped to port 9200 on the Elasticsearch container, exposing its REST API. Port 9300, used for internal cluster communication, is unused in this single-node deployment.<br>
 - #### environment:
   Configuration is managed through environment variables for clarity and ease of deployment. Below is a detailed explanation of the environment variables used:<br>
   
@@ -15,7 +15,7 @@ This project provisions a system for aggregating, storing, and visualizing logs 
   - **xpack.security.http.ssl.enabled** -> When set to true, enables HTTPS and enforces TLS for all connections to the Elasticsearch REST API.<br>
   - **xpack.security.http.ssl.keystore.path** -> Specifies path to the PKCS#12 file that includes the required private key and its corresponding X.509 certificate.<br>
   - **xpack.security.http.ssl.client_authentication** -> Has three options: required, optional, and none (which is the default one). In this config client authentication level is set to optional, which means the Elasticsearch server will ask for clients' certificates, but it's not necessary for clients to provice certificates. However, if a client provides a certificate, it must be valid.<br>
-  - **xpack.security.http.ssl.certificate_authorities** -> Specifies path to the CA certificate file used to verify the authenticity of certificates presented by external clients during TLS handshake. This setting is used only for mTLS.<br>
+  - **xpack.security.http.ssl.certificate_authorities** -> Specifies path to the CA certificate file used to verify the authenticity of certificates presented by external clients during TLS handshake. This setting is required for mTLS.<br>
   - **ELASTIC_PASSWORD** -> Sets a password for the built-in "elastic" superuser during the initial bootstrap of a new Elasticsearch node.<br>
   - **ES_JAVA_OPTS** -> Used for setting JVM arguments such as Xms (initial heap size) and Xmx (maximum heap size).<br>
 - #### volumes:
