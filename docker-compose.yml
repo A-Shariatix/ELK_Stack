@@ -15,6 +15,7 @@ services:
       - xpack.security.http.ssl.enabled=true
       - xpack.security.http.ssl.keystore.path=/usr/share/elasticsearch/config/elasticsearch/elasticsearch.p12
       - xpack.security.http.ssl.certificate_authorities=/usr/share/elasticsearch/config/elasticsearch/ca.crt
+      - xpack.security.http.ssl.client_authentication=optional
     volumes:
 #      - kibana_cert:/usr/share/elasticsearch/kibana
 #      - elastic_cert:/usr/share/elasticsearch/elasticsearch
