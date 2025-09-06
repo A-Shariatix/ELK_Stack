@@ -91,7 +91,7 @@ This project provisions a system for aggregating, storing, and visualizing logs 
 3. Add Elasticsearch private key's password to the keystore using "./bin/elasticsearch-keystore add xpack.security.http.ssl.keystore.secure_password" command inside the elastic container.<br>
 4. Before going for step 5, go to docker-compose.yml and comment lines 16, 17, and 18 out. also change line 15's value from true to false.
 5. Change password of the "kibana_system" bulit-in user from inside the elastic container using "bin/elasticsearch-reset-password -u kibana_system -i" command (if you remove the -i, a random password will be generated). The point of making this step, is to make sure that Kibana can use the mentioned user to connect to Elasticsearch. this password can't get set through docker-comopse.yml (only the "elastic" user's password can be set through config).<br>
-6. undo everything done in step 4.
+6. undo everything done in step 4. These steps could be skipped if the Elasticsearch PKCS#12 certificate file includes the container's ip. 
 7. Define your own configurations in the .env file and place it into the same path as the docker-compose.yml. There is a also a ready to use .env file in files section.<br>
 8. Run "docker compose up" command on your host to deploy the services (make sure your host serves at least 8GB or more free memory).<br>
 9. To track auditd logs, install auditd integration through FLEET UI.
