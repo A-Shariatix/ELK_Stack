@@ -77,7 +77,8 @@ This project provisions a system for aggregating, storing, and visualizing logs 
   - **FLEET_URL** -> Specifies the target Fleet server URL for initial enrollment and furthermore management.<br>
   - **FLEET_ENROLLMENT_TOKEN** -> The Fleet server's enrollment token used to enroll the agent at first place.<br>
 - #### volumes:
-  Several bind-mounts are defined for the Elastic Agent to give it enough access to Linux system logs. Let me explain more details:<br>
+  - **/etc/localtime** -> Synchronizes container's localtime with the host.<br>
+  - **/etc/timezone** -> Synchronizes container's timezone with the host.<br>
   - **./certs/fleet/ca.crt** -> Mounts the CA file to /usr/share/elastic-agent/linux-agent/ca.crt file in container<br>
   - **/var/lib/elastic-agent** -> Shares the agent's state data (like policy, enrollment state, and ...) from the container /var/lib/elastic-agent directory into host, making these data persist across container restarts.<br>
   - **/var/log** -> Mounts contents of /var/log from the host into the container in /hostfs/var/log path. This enables the agent to track the host's logs from inside the container.<br>
