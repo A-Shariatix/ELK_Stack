@@ -134,7 +134,7 @@ services:
       - FLEET_ENROLL=1
       - FLEET_CA=/usr/share/elastic-agent/linux-agent/ca.crt
       - FLEET_URL=${LINUX_AGENT_FLEET_1_URL}
-      - FLEET_URL=${LINUX_AGENT_FLEET_2_URL}
+      - FLEET_URL=${LINUX_AGENT_FLEET_2_URL} # not sure if it works this way; better to use a load balancer
       - FLEET_ENROLLMENT_TOKEN=${LINUX_AGENT_ENROLLMENT_TOKEN}
     depends_on:
       - agent_manager_1
