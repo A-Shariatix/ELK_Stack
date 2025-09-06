@@ -145,6 +145,8 @@ services:
       - agent_manager_2
       - agent_manager_3
     volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
       - ./certs/fleet/ca.crt:/usr/share/elastic-agent/linux-agent/ca.crt
       - /var/lib/elastic-agent:/var/lib/elastic-agent
       - /proc:/hostfs/proc:ro
