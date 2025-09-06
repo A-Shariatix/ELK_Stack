@@ -94,5 +94,6 @@ This project provisions a system for aggregating, storing, and visualizing logs 
 6. undo everything done in step 4. These steps could be skipped if the Elasticsearch PKCS#12 certificate file includes the container's ip. 
 7. Define your own configurations in the .env file and place it into the same path as the docker-compose.yml. There is a also a ready to use .env file in files section.<br>
 8. Run "docker compose up" command on your host to deploy the services (make sure your host serves at least 8GB or more free memory).<br>
-9. Create a policy for the linux-agent. copy the related enrollment token and paste it as LINUX_AGENT_ENROLLMENT_TOKEN value in .env file. then start the agent manually by running "docker start linux-agent".
-10. To track auditd logs, install auditd integration through FLEET UI.
+9. Set Elasticsearch trusted fingerprint in Fleet output settings as same as the value on .env file (FINGERPRINT).
+10. Create a policy for the linux-agent. copy the related enrollment token and paste it as LINUX_AGENT_ENROLLMENT_TOKEN value in .env file. then start the agent manually by running "docker start linux-agent".
+11. To track auditd logs, install auditd integration through FLEET UI.
