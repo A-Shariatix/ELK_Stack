@@ -47,6 +47,7 @@ services:
     networks:
       - project
   agent_manager_1:
+    user: root
     container_name: fleet_1
     image: elastic/elastic-agent:9.1.0
     environment:
@@ -74,6 +75,7 @@ services:
     networks:
       - project
   agent_manager_2:
+    user: root
     container_name: fleet_2
     image: elastic/elastic-agent:9.1.0
     environment:
@@ -101,6 +103,7 @@ services:
     networks:
       - project
   agent_manager_3:
+    user: root
     container_name: fleet_3
     image: elastic/elastic-agent:9.1.0
     environment:
@@ -128,6 +131,7 @@ services:
     networks:
       - project
   os_agent:
+    user: root
     container_name: linux-agent
     image: elastic/elastic-agent:9.1.0
     environment:
