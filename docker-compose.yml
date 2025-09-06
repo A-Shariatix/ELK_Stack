@@ -11,7 +11,7 @@ services:
       - discovery.type=single-node
       - xpack.security.enabled=true
       - ELASTIC_PASSWORD=pass123
-      - ES_JAVA_OPTS=-Xms4g  -Xmx4g
+      - ES_JAVA_OPTS=-Xms2g  -Xmx4g
       - xpack.security.http.ssl.enabled=true
       - xpack.security.http.ssl.keystore.path=/usr/share/elasticsearch/config/elasticsearch/elasticsearch.p12
       - xpack.security.http.ssl.certificate_authorities=/usr/share/elasticsearch/config/elasticsearch/ca.crt
