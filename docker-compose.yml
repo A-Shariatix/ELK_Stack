@@ -46,17 +46,6 @@ services:
       - ./certs/kibana:/usr/share/kibana/config/kibana
     networks:
       - project
-# ------------------------------------------------------
-#  log_processor:
-#    container_name: logstash
-#    ports:
-#      - "5044:5044"
-#    image: elastic/logstash:9.1.1
-#    networks:
-#      - project
-#    volumes:
-#      - ./logstash:/usr/share/logstash/pipeline
-# -------------------------------------------------------
   agent_manager_1:
     container_name: fleet_1
     image: elastic/elastic-agent:9.1.0
