@@ -92,3 +92,4 @@ This project provisions a system for aggregating, storing, and visualizing logs 
 4. Change password of the "kibana_system" bulit-in user from inside the elastic container using "bin/elasticsearch-reset-password -u kibana_system -i" command (if you remove the -i, a random password will be generated). The point of making this step, is to make sure that Kibana can use the mentioned user to connect to Elasticsearch. this password can't get set through docker-comopse.yml (only the "elastic" user's password can be set through config).<br>
 5. Define your own configurations in the .env file and place it into the same path as the docker-compose.yml. There is a also a ready to use .env file in files section.<br>
 6. Run "docker compose up" command on your host to deploy the services (make sure your host serves at least 8GB or more free memory).<br>
+7. To track auditd logs, install auditd integration through FLEET UI.
