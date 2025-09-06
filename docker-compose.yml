@@ -2,7 +2,7 @@ name: elk-setup
 services:
   db:
     container_name: elastic
-    image: elasticsearch:9.1.0
+    image: elasticsearch:8.16.1
     ports:
       - "9200:9200"
     networks:
@@ -28,7 +28,7 @@ services:
     container_name: kibana
     ports:
       - "5601:5601"
-    image: kibana:9.1.0
+    image: kibana:8.16.1
     environment:
       - ELASTICSEARCH_HOSTS=${ELASTICSEARCH_HOST}
       - ELASTICSEARCH_SSL_CERTIFICATEAUTHORITIES=/usr/share/kibana/config/kibana/ca.crt
@@ -49,7 +49,7 @@ services:
   agent_manager_1:
     user: root
     container_name: fleet_1
-    image: elastic/elastic-agent:9.1.0
+    image: elastic/elastic-agent:8.16.1
     environment:
       - FLEET_SERVER_ENABLE=1
       - ELASTICSEARCH_HOST=${ELASTICSEARCH_HOST}
@@ -77,7 +77,7 @@ services:
   agent_manager_2:
     user: root
     container_name: fleet_2
-    image: elastic/elastic-agent:9.1.0
+    image: elastic/elastic-agent:8.16.1
     environment:
       - FLEET_SERVER_ENABLE=1
       - ELASTICSEARCH_HOST=${ELASTICSEARCH_HOST}
@@ -105,7 +105,7 @@ services:
   agent_manager_3:
     user: root
     container_name: fleet_3
-    image: elastic/elastic-agent:9.1.0
+    image: elastic/elastic-agent:8.16.1
     environment:
       - FLEET_SERVER_ENABLE=1
       - ELASTICSEARCH_HOST=${ELASTICSEARCH_HOST}
@@ -133,7 +133,7 @@ services:
   os_agent:
     user: root
     container_name: linux-agent
-    image: elastic/elastic-agent:9.1.0
+    image: elastic/elastic-agent:8.16.1
     environment:
       - FLEET_ENROLL=1
       - FLEET_CA=/usr/share/elastic-agent/linux-agent/ca.crt
